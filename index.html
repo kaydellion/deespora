@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Deespora</title>
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<!-- Plus Jakarta Sans font-->
+    <link href="https://fonts.cdnfonts.com/css/plus-jakarta-sans?styles=169556" rel="stylesheet">
+    
+    
+</head>
+<body>
+	<section class="hero-section">
+		<div class="hero-overlay"></div>
+		<div class="nav-controller">
+			<div class="nav-logo text-start">
+                <img src="assets/images/new-logo.png" class="logo" alt="Deespora Logo">
+            </div>
+			<nav class="nav-menu d-flex justify-content-center">
+				<a href="#">Home</a>
+				<a href="#">What We Offer</a>
+				<a href="#">How It Works</a>
+				<a href="#">FAQs</a>
+				<a href="#">Contact Us</a>
+			</nav>
+			<div class="text-end">
+				<a class="nav-btn d-none d-lg-inline-block noline" href="#contactForm">Contact Us</a>
+				<button class="hamburger-btn d-lg-none" onclick="toggleMobileMenu()">
+					<i class="fas fa-bars"></i>
+				</button>
+			</div>
+		</div>
+		<!-- Mobile Menu Overlay -->
+		<div class="menu-overlay" onclick="closeMobileMenu()"></div>
+		<!-- Mobile Menu -->
+		<div id="mobileMenu" class="mobile-menu">
+			<div class="mobile-menu-header">
+				<img src="assets/images/new-logo.png" alt="Deespora Logo" class="mobile-logo logo">
+				<button class="close-menu-btn" onclick="closeMobileMenu()">
+					<i class="fas fa-times"></i>
+				</button>
+			</div>
+			<div class="mobile-menu-items">
+				<a href="/">Home</a>
+				<a href="#offer">What We Offer</a>
+				<a href="#how-it-works">How It Works</a>
+				<a href="#faqs">FAQs</a>
+				<a href="#contact">Contact Us</a>
+				<a class="nav-btn mt-3 noline" href="#contactForm">Contact Us</a>
+			</div>
+		</div>
+		<div class="hero-content">
+			<div class="hero-left">
+				<div class="hero-title">Discover African Businesses, Events & Culture in Your City.</div>
+				<div class="hero-desc light-text">From food spots to events, Deespora helps Africans in America connect, support, and thrive together.</div>
+				<div class="download-app-text light-text">Download our app:</div>
+				<div class="download-buttons">
+					<a href=""><img src="assets/images/apple.png" alt="Download on Apple Store"></a>
+					<a href=""><img src="assets/images/play.png" alt="Download on Play Store"></a>
+				</div>
+			</div>
+			<div class="hero-right d-block d-sm-none">
+				<img src="assets/images/hero2.png" viewBox='0 0 200 400'%3E%3Crect width='200' height='400' rx='20' fill='%23f8f9fa' stroke='%23ddd'/%3E%3Ctext x='100' y='200' text-anchor='middle' fill='%2337B6AF' font-size='16'%3EApp Preview%3C/text%3E%3C/svg%3E" alt="App Preview" class="hero-img-overlap">
+			</div>
+		</div>
+	</section>
+	
+	<!-- Features Section -->
+	<section class="features-section py-5" id="offer">
+		<div class="container-fluid">
+			<div class="row align-items-center">
+				<div class="col-lg-6 mb-4 mb-lg-0">
+					<h2 class="features-title" style="font-size:2.2rem;font-weight:700;line-height:1.2;max-width:450px;">
+						Deespora isn't just an app.<br> It's a movement to celebrate, connect, and empower.<span class="text-green">AFRICANS in the U.S</span>
+					</h2>
+					<p class="features-desc mt-3" style="font-size:1.1rem;font-weight:500;max-width:600px;">To bridge the gap between Africans abroad and the opportunities, culture, and people that matter most to them.</p>
+				</div>
+				<div class="col-lg-6">
+					<div class="row g-4">
+						<div class="col-6">
+							<div class="icon-box">
+								<div class="icon-bg icon-bg-1">
+									<img src="assets/images/1.png" alt="Catering Icon" class="icon-img">
+								</div>
+								<div class="icon-text"><span class="icon-title">Catering</span>
+                                <p class="icon-box-desc">Connect with African caterers for events, parties, and special occasions.</p>
+                                </div>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="icon-box mt-lg-4">
+								<div class="icon-bg">
+								<img src="assets/images/2.png" alt="Events Icon" class="icon-img">
+								</div>
+								<div class="icon-text"><span class="icon-title">Curated Events</span>
+                                <p class="icon-box-desc">Discover and support African-owned businesses across the U.S., from restaurants and boutiques to service providers.</p>
+                                </div>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="icon-box">
+								<div class="icon-bg">
+									<img src="assets/images/3.png" alt="Real Estate Icon" class="icon-img">
+								</div>
+								<div class="icon-text"><span class="icon-title">Real Estate Listings</span>
+                                <p class="icon-box-desc">Find trusted African real estate agents and properties tailored to your community needs.</p>
+                                </div>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="icon-box mt-lg-4">
+								<div class="icon-bg">
+									<img src="assets/images/4.png" alt="Restaurants Icon" class="icon-img">
+								</div>
+								<div class="icon-text"><span class="icon-title">Restaurants</span>
+                                <p class="icon-box-desc">Explore authentic African restaurants near you and enjoy the flavors of home.</p>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Benefits & Download Section -->
+	<section class="benefits-section py-5" id="how-it-works">
+		<div class="container-fluid">
+			<div class="row align-items-center">
+				<div class="col-lg-8 mb-4 mb-lg-0">
+					<h2 class="benefits-title" style="font-size:2rem;font-weight:700;line-height:1.2;max-width:450px;">
+						How It Works
+					</h2>
+					<p class="benefits-desc mt-3" style="font-size:1.1rem;font-weight:500;max-width:500px;">
+                    Using Deespora is simple. Whether you're looking for a taste of home, a trusted business, or a vibrant African event, we make it easy to stay connected.
+                    </p>
+					<div class="row g-1 mt-4">
+						<div class="col-md-6 col-12">
+							<div class="benefit-icon-box">
+								<i class="fa fa-check-double benefit-icon-bg"></i>
+								Download & Sign Up
+							</div>
+						</div>
+						<div class="col-md-6 col-12">
+							<div class="benefit-icon-box">
+								<i class="fa fa-check-double benefit-icon-bg"></i>
+								Discover & Explore
+							</div>
+						</div>
+						<div class="col-md-6 col-12">
+							<div class="benefit-icon-box">
+								<i class="fa fa-check-double benefit-icon-bg"></i>
+								Connect & Support
+							</div>
+						</div>
+						<div class="col-md-6 col-12">
+							<div class="benefit-icon-box">
+								<i class="fa fa-check-double benefit-icon-bg"></i>
+								Save, Share and Keep Exploring
+							</div>
+						</div>
+					</div>
+					<div class="download-app-text text-left mt-4">Download our app:</div>
+					<div class="download-buttons text-left mb-3">
+						<a href=""><img src="assets/images/apple.png" alt="Download on Apple Store"></a>
+						<a href=""><img src="assets/images/play.png" alt="Download on Play Store"></a>
+					</div>
+				</div>
+				<div class="col-lg-4 text-center">
+					<img src="assets/images/how.png" alt="Community" class="benefits-img">
+				</div>
+			</div>
+		</div>
+	</section>
+
+     <!-- FAQ Section -->
+    <section class="faq-section section-spacing py-5" id="faqs">
+        <div class="container">
+            <div class="text-center text-white mb-5">
+                <h2 class="fw-bold">Frequently asked questions</h2>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    What is Deespora?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Deespora is a Platform That Connects Africans In The U.S. With African-Owned Businesses, Restaurants, Catering Services, Events, And Real Estate Listings While Celebrating Culture And Community.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    Who can use Deespora?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Deespora is designed for Africans living in the U.S., African diaspora communities, and anyone interested in connecting with African culture, businesses, and events.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    Is Deespora free to use?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, Deespora is free to download and use. We believe in making it easy for our community to stay connected and discover opportunities.
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                 Can I find African restaurants and catering services near me?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, Deespora helps you find African restaurants and catering services near you. You can easily discover local businesses and connect with them through our platform.
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                    Does Deespora organize events?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, Deespora organizes events to promote African culture and connect the community. You can find information about upcoming events on our platform.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Contact Section -->
+    <section id="contact" class="contact-section section-spacing">
+        <div class="container">
+            <div class="text-center mb-5" style="max-width:800px;margin:auto;">
+                <h2 class="fw-bold">Contact us</h2>
+                <p>Have questions, suggestions, or need support? We'd love to hear from you. Our team is here to help Africans in the U.S. connect, discover, and grow together.</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="row bg-contact">
+                        <div class="col-lg-5 mb-4">
+                          <div class="container mt-5">
+        <div class="bg-primary-custom touch-form text-white p-4 d-flex flex-column contact-round">
+            <h4 class="fw-bold mb-4">Get in touch</h4>
+            
+            <div class="contact-item mb-3">
+                <span class="cicon">
+                    <i class="fas fa-envelope"></i>
+                </span>
+                <span class="ctext">info@deespora.com</span>
+            </div>
+            
+            <div class="contact-item mb-3">
+                <span class="cicon">
+                    <i class="fas fa-phone"></i>
+                </span>
+                <span class="ctext">+1-202-555-0136</span>
+            </div>
+            
+            <div class="contact-item mb-4">
+                <span class="cicon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </span>
+                <span class="ctext">901 N Pitt St., Suite 170<br>Alexandria, VA 22314, USA</span>
+            </div>
+            
+            <div class="mt-auto pt-4">
+                <p class="mb-2">Connect with us:</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+                        </div>
+                        
+                        <div class="col-lg-7" style="align-content: center; font-size: 14px;">
+                            <form class="contact-form p-4" id="contactForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="business" class="form-label">Business Name</label>
+                                    <input type="text" class="form-control" id="business" placeholder="Business Name">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="Tell us about your request"></textarea>
+                                </div>
+                                <button type="submit" class="btn bg-primary-custom px-4 py-2 text-white">
+                                    Send Message <i class="fas fa-arrow-right ms-2"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4 col-12 text-center">
+                    <img src="assets/images/new-logo.png" viewBox='0 0 200 60'%3E%3Ctext x='10' y='35' font-family='Plus Jakarta Sans, sans-serif' font-size='24' font-weight='700' fill='%2337B6AF'%3EDeespora%3C/text%3E%3C/svg%3E" alt="Deespora Logo" class="footer-logo me-2">
+                    <p class="mt-2 small">Deespora - Connecting Africans in the U.S. to culture, community, and opportunities.</p>
+                    </div><hr>
+                <div class="col-md-12 text-md-end mt-3 mt-md-0">
+                    <p class="mb-0 small text-center">© <script>document.write(new Date().getFullYear());</script> - Deespora</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<script>
+		function toggleMobileMenu() {
+			const mobileMenu = document.getElementById('mobileMenu');
+			const overlay = document.querySelector('.menu-overlay');
+			
+			mobileMenu.classList.add('active');
+			overlay.classList.add('active');
+			
+			// Prevent body scroll when menu is open
+			document.body.style.overflow = 'hidden';
+		}
+		
+		function closeMobileMenu() {
+			const mobileMenu = document.getElementById('mobileMenu');
+			const overlay = document.querySelector('.menu-overlay');
+			
+			mobileMenu.classList.remove('active');
+			overlay.classList.remove('active');
+			
+			// Restore body scroll
+			document.body.style.overflow = '';
+		}
+		
+		// Close menu on escape key
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape') {
+				closeMobileMenu();
+			}
+		});
+		
+		// Handle window resize
+		window.addEventListener('resize', function() {
+			if (window.innerWidth > 991) {
+				closeMobileMenu();
+			}
+		});
+	</script>
+</body>
+</html>
