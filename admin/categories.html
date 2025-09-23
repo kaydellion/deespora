@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin Dashboard — Header + Search Pill</title>
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+
+<!-- font family -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+<body>
+
+
+<!-- Header -->
+<div class="header-wrap">
+  <nav class="top-pill navbar navbar-dark">
+    <div class="d-flex align-items-center w-100 justify-content-between">
+      
+      <!-- Toggle for sm/md -->
+      <div class="dropdown d-lg-none">
+        <button class="navbar-toggler" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Mobile Dropdown -->
+        <ul class="dropdown-menu mobile-menu border-0 shadow mt-2">
+          <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+          <li><a class="dropdown-item" href="users.html">Users</a></li>
+          <li><a class="dropdown-item" href="categories.html">Categories</a></li>
+          <li><a class="dropdown-item" href="listing.html">Listings</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+        </ul>
+      </div>
+
+      <!-- Desktop Nav -->
+      <ul class="navbar-nav flex-row d-none d-lg-flex gap-2">
+        <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="users.html">Users</a></li>
+        <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="listing.html">Listings</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+      </ul>
+
+      <!-- Icons -->
+      <div class="pill-icons gap-2">
+        <button class="icon-circle" aria-label="Notifications"><i class="bi bi-bell-fill"></i></button>
+        <img src="https://via.placeholder.com/40x40.png?text=G" alt="globe/avatar" class="avatar-sm" />
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+ <!-- Main Content -->
+<div class="container mt-4">
+  <!-- Add Category Button -->
+  <div class="d-flex justify-content-end mb-2">
+  <!-- Trigger Button -->
+<button class="btn btn-add-category" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+  + Add Category
+</button>
+
+  </div>
+
+  <!-- Categories Table -->
+  <div class="table-responsive">
+    <table  class="table table-borderless categories-table text-center" id="myTable">
+      <thead>
+        <tr>
+          <th>Category Name</th>
+          <th>Category ID</th>
+          <th>Number of Listings</th>
+          <th>Created Date</th>
+          <th>Status</th>
+          <th></th>
+       
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Events</td>
+          <td>123422345</td>
+          <td>134</td>
+          <td>2025-03-12</td>
+          <td><span class="status-active">Active</span></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View Listings</a></li>
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Legal & Tax</td>
+          <td>123422346</td>
+          <td>80</td>
+          <td>2025-03-12</td>
+          <td><span class="status-suspend">Inactive</span></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View Listings</a></li>
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Restaurants</td>
+          <td>123422347</td>
+          <td>210</td>
+          <td>2025-03-12</td>
+          <td><span class="status-active">Active</span></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View Listings</a></li>
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCategoryLabel">Add New Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">Category Name</label>
+            <input type="text" class="form-control" placeholder="Name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Slug (Optional)</label>
+            <input type="text" class="form-control" placeholder="Slug">
+          </div>
+
+          <div class="mb-3">
+      <label for="iconUpload" class="form-label">Icon</label>
+      <div class="file-upload">
+        <label for="iconUpload" class="upload-label">
+          <i class="bi bi-upload"></i> 48 x 48 px
+        </label>
+        <input type="file" id="iconUpload" hidden>
+      </div>
+    </div>
+          <div class="mb-3 d-flex align-items-center gap-3">
+            <label class="form-label mb-0">Status</label>
+            <div class="form-check form-switch mt-1">
+              <input class="form-check-input" type="checkbox" checked>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer border-0 d-flex justify-content-center">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-category">Save Category</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
+

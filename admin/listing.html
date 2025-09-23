@@ -1,0 +1,311 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Listing</title>
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+
+<!-- font family -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+<body>
+
+
+<!-- Header -->
+<div class="header-wrap">
+  <nav class="top-pill navbar navbar-dark">
+    <div class="d-flex align-items-center w-100 justify-content-between">
+      
+      <!-- Toggle for sm/md -->
+      <div class="dropdown d-lg-none">
+        <button class="navbar-toggler" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Mobile Dropdown -->
+        <ul class="dropdown-menu mobile-menu border-0 shadow mt-2">
+          <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+          <li><a class="dropdown-item" href="users.html">Users</a></li>
+          <li><a class="dropdown-item" href="categories.html">Categories</a></li>
+          <li><a class="dropdown-item" href="listing.html">Listings</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+        </ul>
+      </div>
+
+      <!-- Desktop Nav -->
+      <ul class="navbar-nav flex-row d-none d-lg-flex gap-2">
+        <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="users.html">Users</a></li>
+        <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="listing.html">Listings</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+      </ul>
+
+      <!-- Icons -->
+      <div class="pill-icons gap-2">
+        <button class="icon-circle" aria-label="Notifications"><i class="bi bi-bell-fill"></i></button>
+        <img src="https://via.placeholder.com/40x40.png?text=G" alt="globe/avatar" class="avatar-sm" />
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+
+ <!-- Main Content -->
+    <div class="container mt-4">
+  
+    <!-- Filter + Search Row -->
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <!-- Search -->
+    <div class="input-group" style="max-width: 300px;">
+        <span class="input-group-text bg-white border-end-0">
+        <i class="bi bi-search"></i>
+        </span>
+        <input type="text" class="form-control border-start-0" id="searchInput" placeholder="Search">
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary" id="filterButton">
+        <i class="bi bi-filter me-1"></i> Filters
+        </button>
+        <button class="btn btn-add-Listing" data-bs-toggle="modal" data-bs-target="#addListingModal">
+        + Add Listing
+        </button>
+    </div>
+    </div>
+
+
+
+
+  <!-- Categories Table -->
+  <div class="table-responsive">
+    <table class="table table-borderless categories-table text-center" id="myTable">
+      <thead>
+        <tr>
+          <th data-column="0">Category Name</th>
+          <th data-column="1">Category ID</th>
+          <th data-column="2">Number of Listings</th>
+          <th data-column="3">Created Date</th>
+          <th data-column="4">Status</th>
+          <th></th>
+       
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Events</td>
+          <td>123422345</td>
+          <td>134</td>
+          <td>2025-03-12</td>
+          <td><span class="status-active">Active</span></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View Listings</a></li>
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Legal & Tax</td>
+          <td>123422346</td>
+          <td>80</td>
+          <td>2025-03-12</td>
+          <td><span class="status-inactive">Inactive</span></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View Listings</a></li>
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Restaurants</td>
+          <td>123422347</td>
+          <td>210</td>
+          <td>2025-03-12</td>
+          <td><span class="status-active">Active</span></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View Listings</a></li>
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="addListingModal" tabindex="-1" aria-labelledby="addListingLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content custom-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addListingLabel">Add New Listing</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" placeholder="Name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Category</label>
+              <select class="form-select">
+                <option selected disabled>Select Category</option>
+                <option>Restaurant</option>
+                <option>Event</option>
+                <!-- Add more categories -->
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" rows="2" placeholder="Description"></textarea>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Location</label>
+              <input type="text" class="form-control" placeholder="Location">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Contact Phone</label>
+              <input type="tel" class="form-control" placeholder="Phone Number">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Website / Ticket Link (For Events)</label>
+              <input type="url" class="form-control" placeholder="https://example.com">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Date (For Events)</label>
+              <input type="date" class="form-control">
+            </div>
+
+            <div class="col-md-12">
+        <label for="iconUpload" class="form-label">Icon</label>
+        <div class="input-group file-upload">
+            <span class="input-group-text bg-white border-end-0 gap-2">
+            <i class="bi bi-upload"></i>Upload images
+            </span>
+            <input type="file" class="form-control border-start-0" id="iconUpload" placeholder="Add file">
+        </div>
+        </div>
+
+            <div class="col-md-12">
+    		<div class="mb-3 mt-3 d-flex gap-5 flex-wrap">
+        
+			<!-- Promote Listing -->
+			<div class="d-flex align-items-center gap-3">
+			<label class="form-label labels mb-0">Promote Listing</label>
+			  <div class="form-check form-switch mt-1">
+				<input class="form-check-input" type="checkbox" checked>
+			</div>
+			</div>
+
+			<!-- Status Toggle -->
+			<div class="d-flex align-items-center gap-2">
+			<label class="form-label labels mb-0">Status</label>
+			<div class="form-check form-switch mt-1">
+				<input class="form-check-input" type="checkbox" checked>
+			</div>
+			</div>
+
+		</div>
+		</div>
+	
+	
+	<div class="col-md-12">
+  <div class="mb-3 d-lg-flex gap-4 flex-wrap">
+
+    <div class="d-flex align-items-center">
+      <label class="form-label labels mb-0 me-3" for="featureHome">
+        Feature on Homepage
+      </label>
+      <input class="form-check-input" type="checkbox" id="featureHome" checked>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <label class="form-label labels mb-0 me-3" for="highlightNews">
+        Highlight in Newsletter
+      </label>
+      <input class="form-check-input" type="checkbox" id="highlightNews" checked>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <label class="form-label labels mb-0 me-3" for="trendingBadge">
+        Add as "<span class="text-danger">🔥Trending</span>" Badge
+      </label>
+      <input class="form-check-input" type="checkbox" id="trendingBadge" checked>
+    </div>
+
+  </div>
+</div>
+
+
+            <div class="col-md-6">
+              <label class="form-label">Promotion Duration</label>
+              <input type="text" class="form-control" placeholder="e.g. 3 Days">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Start Date</label>
+              <input type="date" class="form-control">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer border-0 d-flex justify-content-center">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-listing">Save Listing</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
+
