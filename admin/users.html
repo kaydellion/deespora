@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Admin Dashboard — Header + Search Pill</title>
 
+<!--favicon-->
+<link rel="icon" type="image/png" href="img/favicon.png" />
+
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -55,7 +58,8 @@
       <!-- Icons -->
       <div class="pill-icons">
         <button class="icon-circle" aria-label="Notifications"><i class="bi bi-bell-fill"></i></button>
-        <img src="https://via.placeholder.com/40x40.png?text=G" alt="globe/avatar" class="avatar-sm" />
+        <button class="btn btn-sm btn-outline-light" onclick="logout()">Logout</button>
+        <img src="img/avatar-placeholder.png" alt="admin avatar" class="avatar-sm" />
       </div>
     </div>
   </nav>
@@ -68,14 +72,22 @@
       <i class="bi bi-search"></i>
       <input id="customSearch" class="form-control" type="search" placeholder="Search">
     </div>
-        <!-- Hidden file input -->
+    
+    <!-- Import/Export Dropdown -->
+    <div class="dropdown">
+      <button class="import-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <i class="bi bi-upload"></i> Import/Export
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#" onclick="exportToCSV()"><i class="bi bi-file-earmark-spreadsheet me-2"></i>Export to CSV</a></li>
+        <li><a class="dropdown-item" href="#" onclick="exportToJSON()"><i class="bi bi-file-earmark-code me-2"></i>Export to JSON</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" onclick="document.getElementById('fileUpload').click()"><i class="bi bi-upload me-2"></i>Import CSV/JSON</a></li>
+      </ul>
+    </div>
+    
     <!-- Hidden file input -->
-    <input type="file" id="fileUpload" hidden>
-
-    <!-- Styled label that looks like your button -->
-    <label for="fileUpload" class="import-btn">
-      <i class="bi bi-upload"></i> Import/Export
-    </label>
+    <input type="file" id="fileUpload" accept=".csv,.json" hidden onchange="handleFileImport(event)">
   </div>
 </div>
 
@@ -285,11 +297,15 @@
 </div>
 
 <!-- Scripts -->
+<script src="config.js"></script>
+<script>checkAuth();</script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="api.js"></script>
 <script src="js/main.js"></script>
+<script src="js/users.js"></script>
 
 </body>
 </html>

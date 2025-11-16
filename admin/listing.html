@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Listing</title>
 
+<!--favicon-->
+<link rel="icon" type="image/png" href="img/favicon.png" />
+
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,6 +25,10 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
+
+<!-- Add auth check -->
+<script src="config.js"></script>
+<script>checkAuth();</script>
 
 
 <!-- Header -->
@@ -56,7 +63,8 @@
       <!-- Icons -->
       <div class="pill-icons gap-2">
         <button class="icon-circle" aria-label="Notifications"><i class="bi bi-bell-fill"></i></button>
-        <img src="https://via.placeholder.com/40x40.png?text=G" alt="globe/avatar" class="avatar-sm" />
+        <button class="btn btn-sm btn-outline-light" onclick="logout()">Logout</button>
+        <img src="img/avatar-placeholder.png" alt="admin avatar" class="avatar-sm" />
       </div>
     </div>
   </nav>
@@ -92,80 +100,90 @@
 
 
 
-  <!-- Categories Table -->
+  <!-- Listings Table -->
   <div class="table-responsive">
     <table class="table table-borderless categories-table text-center" id="myTable">
       <thead>
         <tr>
-          <th data-column="0">Category Name</th>
-          <th data-column="1">Category ID</th>
-          <th data-column="2">Number of Listings</th>
-          <th data-column="3">Created Date</th>
-          <th data-column="4">Status</th>
-          <th></th>
-       
+          <th>Category</th>
+          <th>Title</th>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Events</td>
-          <td>123422345</td>
-          <td>134</td>
-          <td>2025-03-12</td>
-          <td><span class="status-active">Active</span></td>
-          <td>
-            <div class="dropdown">
-              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
-                <i class="bi bi-three-dots-vertical"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">View Listings</a></li>
-                <li><a class="dropdown-item" href="#">Edit</a></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Legal & Tax</td>
-          <td>123422346</td>
-          <td>80</td>
-          <td>2025-03-12</td>
-          <td><span class="status-inactive">Inactive</span></td>
-          <td>
-            <div class="dropdown">
-              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
-                <i class="bi bi-three-dots-vertical"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">View Listings</a></li>
-                <li><a class="dropdown-item" href="#">Edit</a></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Restaurants</td>
-          <td>123422347</td>
-          <td>210</td>
-          <td>2025-03-12</td>
-          <td><span class="status-active">Active</span></td>
-          <td>
-            <div class="dropdown">
-              <button class="btn p-0" type="button" data-bs-toggle="dropdown">
-                <i class="bi bi-three-dots-vertical"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">View Listings</a></li>
-                <li><a class="dropdown-item" href="#">Edit</a></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
+        <!-- Dynamic content will be loaded here -->
       </tbody>
     </table>
   </div>
-</div>
 
+  <!-- Filter Dropdown (Initially Hidden) -->
+  <div id="filterDropdown" class="card shadow-sm mt-3 d-none">
+    <div class="card-body">
+      <h6 class="mb-3">Filter Options</h6>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="filterCategory">
+            <option value="">All Categories</option>
+            <option value="events">Events</option>
+            <option value="restaurants">Restaurants</option>
+            <option value="catering">Catering</option>
+            <option value="real-estate">Real Estate</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="filterStatus">
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Date Range</label>
+          <select class="form-select" id="filterDate">
+            <option value="">All Dates</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="past">Past</option>
+            <option value="this-week">This Week</option>
+            <option value="this-month">This Month</option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-3 d-flex gap-2">
+        <button class="btn btn-add-Listing" onclick="applyFilters()">Apply Filters</button>
+        <button class="btn btn-outline-secondary" onclick="clearFilters()">Clear All</button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+/*Bootsrap pagination deisgn*/
+.dataTables_wrapper .dataTables_paginate .paginate_button { 
+    border: none;
+    background-color: #28a745 !important;
+    color: white !important;
+    border-radius: 5px;
+    margin: 0 2px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #000;
+    color: white !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #000;
+    color: white !important;
+}
+.btn-primary {
+    background-color: #28a745 !important;
+    color: white;
+}
+</style>
 <div class="modal fade" id="addListingModal" tabindex="-1" aria-labelledby="addListingLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content custom-modal">
@@ -299,11 +317,15 @@
 
 
 <!-- Scripts -->
+<script src="config.js"></script>
+<script>checkAuth();</script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="api.js"></script>
 <script src="js/main.js"></script>
+<script src="js/listings.js"></script>
 
 
 </body>

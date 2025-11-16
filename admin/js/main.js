@@ -1,14 +1,19 @@
 $(document).ready(function() {
-  var table = $('#myTable').DataTable({
-    paging: false,       // disable pagination
-    searching: false,    // disable search
-    info: false,         // hide "Showing X of Y entries"
-    autoWidth: false,    // prevent miscalculation of widths
-    responsive: true     // keep table responsive
-  });
-
-  // force adjust after draw
-  table.columns.adjust().draw();
+  // Only initialize DataTable if table exists and is NOT on dashboard or users page
+  const table = $('#myTable');
+  const currentPage = window.location.pathname;
+  const excludePages = ['dashboard.html', 'users.html', 'listing.html'];
+  const shouldExclude = excludePages.some(page => currentPage.includes(page));
+  
+  if (table.length && !shouldExclude) {
+    table.DataTable({
+      paging: false,       // disable pagination
+      searching: false,    // disable search
+      info: false,         // hide "Showing X of Y entries"
+      autoWidth: false,    // prevent miscalculation of widths
+      responsive: true     // keep table responsive
+    });
+  }
 });
 
 

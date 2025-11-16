@@ -1,0 +1,30 @@
+{
+	"info": {
+		"_postman_id": "d80494d4-20a7-485f-b7fc-f3a6df604e75",
+		"name": "Catering",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27409495",
+		"_collection_link": "https://www.postman.com/dark-shadow-333419/deesporainfra/collection/0rdiboc/catering?action=share&source=collection_link&creator=27409495"
+	},
+	"item": [
+		{
+			"name": "Catering",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/catering",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"catering"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

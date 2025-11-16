@@ -7,6 +7,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Promote Events</title>
 
+<!--favicon-->
+<link rel="icon" type="image/png" href="img/favicon.png" />
+
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -57,7 +60,8 @@
       <!-- Icons -->
       <div class="pill-icons gap-2">
         <button class="icon-circle" aria-label="Notifications"><i class="bi bi-bell-fill"></i></button>
-        <img src="https://via.placeholder.com/40x40.png?text=G" alt="globe/avatar" class="avatar-sm" />
+        <button class="btn btn-sm btn-outline-light" onclick="logout()">Logout</button>
+        <img src="img/avatar-placeholder.png" alt="admin avatar" class="avatar-sm" />
       </div>
     </div>
   </nav>
@@ -75,14 +79,18 @@
 <div class="d-flex flex-wrap justify-content-between gap-3 border-bottom pb-3 mb-3">
   <a href="#" class="card box px-2 py-4 flex-fill">
     <h6 class="mb-1 text-muted">Total Users</h6>
-    <h3 class="fw-bold mb-0">9,800</h3>
+    <h3 class="fw-bold mb-0" id="totalUsers">
+      <div class="spinner-border spinner-border-sm" role="status"></div>
+    </h3>
   </a>
 <a href="#" class="card box flex-fill px-2 py-4">
   <div class="d-flex justify-content-between align-items-center mb-1">
     <h6 class="mb-0 text-muted">Active Users</h6>
     <span class="trend-icon"><i class="bi bi-arrow-up-right"></i></span>
   </div>
-  <h3 class="fw-bold mb-0">6,500</h3>
+  <h3 class="fw-bold mb-0" id="activeUsers">
+    <div class="spinner-border spinner-border-sm" role="status"></div>
+  </h3>
 </a>
 
 <a href="#" class="card box px-2 py-4 flex-fill">
@@ -90,7 +98,9 @@
     <h6 class="mb-0 text-muted">Churned Users</h6>
     <span class="trend-icon"><i class="bi bi-arrow-up-right"></i></span>
   </div>
-  <h3 class="fw-bold mb-0">1,000</h3>
+  <h3 class="fw-bold mb-0" id="churnedUsers">
+    <div class="spinner-border spinner-border-sm" role="status"></div>
+  </h3>
 </a>
 
 <a href="#" class="card box px-2 py-4 flex-fill">
@@ -98,7 +108,9 @@
     <h6 class="mb-0 text-muted">New Users This<br> Week</h6>
     <span class="trend-icon"><i class="bi bi-arrow-up-right"></i></span>
   </div>
-  <h3 class="fw-bold mb-0">200</h3>
+  <h3 class="fw-bold mb-0" id="newUsersWeek">
+    <div class="spinner-border spinner-border-sm" role="status"></div>
+  </h3>
 </a>
 
 
@@ -107,7 +119,9 @@
     <h6 class="mb-0 text-muted">Active Users<br> Today</h6>
     <span class="trend-icon"><i class="bi bi-arrow-up-right"></i></span>
   </div>
-  <h3 class="fw-bold mb-0">200</h3>
+  <h3 class="fw-bold mb-0" id="activeUsersToday">
+    <div class="spinner-border spinner-border-sm" role="status"></div>
+  </h3>
 </a>
 </div>
 
@@ -115,35 +129,43 @@
 <div class="d-flex flex-wrap justify-content-between gap-3 border-bottom pb-3 mb-3">
   <a href="#" class="card box py-3 px-2  flex-fill">
     <h6 class="mb-1 text-muted">Total Listings</h6>
-    <h3 class="fw-bold mb-0">9,800</h3>
+    <h3 class="fw-bold mb-0" id="totalListings">
+      <div class="spinner-border spinner-border-sm" role="status"></div>
+    </h3>
   </a>
   <a href="#" class="card box py-3 px-2  flex-fill">
     <h6 class="mb-1 text-muted">Restaurants</h6>
-    <h3 class="fw-bold mb-0">1,000</h3>
+    <h3 class="fw-bold mb-0" id="restaurantsCount">
+      <div class="spinner-border spinner-border-sm" role="status"></div>
+    </h3>
   </a>
   <a href="#" class="card box py-3 px-2  flex-fill">
     <h6 class="mb-1 text-muted">Catering</h6>
-    <h3 class="fw-bold mb-0">200</h3>
+    <h3 class="fw-bold mb-0" id="cateringCount">
+      <div class="spinner-border spinner-border-sm" role="status"></div>
+    </h3>
   </a>
   <a href="#" class="card box py-3 px-2 flex-fill">
     <h6 class="mb-1 text-muted">Worship</h6>
-    <h3 class="fw-bold mb-0">200</h3>
+    <h3 class="fw-bold mb-0" id="worshipCount">0</h3>
   </a>
   <a href="#" class="card box py-3 px-2 flex-fill">
     <h6 class="mb-1 text-muted">Real Estate</h6>
-    <h3 class="fw-bold mb-0">200</h3>
+    <h3 class="fw-bold mb-0" id="realEstateCount">
+      <div class="spinner-border spinner-border-sm" role="status"></div>
+    </h3>
   </a>
   <a href="#" class="card box py-3 px-2 flex-fill">
     <h6 class="mb-1 text-muted">Deals</h6>
-    <h3 class="fw-bold mb-0">6,500</h3>
+    <h3 class="fw-bold mb-0" id="dealsCount">0</h3>
   </a>
   <a href="#" class="card box py-3 px-2 flex-fill">
     <h6 class="mb-1 text-muted">Cakes & Pastries</h6>
-    <h3 class="fw-bold mb-0">200</h3>
+    <h3 class="fw-bold mb-0" id="cakesCount">0</h3>
   </a>
   <a href="#" class="card box py-3 px-2 flex-fill">
     <h6 class="mb-1 text-muted">Legal & Tax</h6>
-    <h3 class="fw-bold mb-0">200</h3>
+    <h3 class="fw-bold mb-0" id="legalTaxCount">0</h3>
   </a>
 </div>
 
@@ -170,6 +192,41 @@
     </div>
     </div>
 
+  <!-- Filter Dropdown (Initially Hidden) -->
+  <div id="filterDropdown" class="card shadow-sm mb-3 d-none">
+    <div class="card-body">
+      <h6 class="mb-3">Filter Events</h6>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="filterStatus">
+            <option value="">All Status</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="ongoing">Ongoing</option>
+            <option value="past">Past</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Date Range</label>
+          <select class="form-select" id="filterDate">
+            <option value="">All Dates</option>
+            <option value="today">Today</option>
+            <option value="this-week">This Week</option>
+            <option value="this-month">This Month</option>
+            <option value="next-month">Next Month</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Location</label>
+          <input type="text" class="form-control" id="filterLocation" placeholder="City or State">
+        </div>
+      </div>
+      <div class="mt-3 d-flex gap-2">
+        <button class="btn btn-add-Listing" onclick="applyDashboardFilters()">Apply Filters</button>
+        <button class="btn btn-outline-secondary" onclick="clearDashboardFilters()">Clear All</button>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -189,105 +246,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Nigerian Gala 2025</td>
-        <td>12345</td>
-        <td>Naija Events LLC</td>
-        <td>July 24</td>
-        <td>New York, NY</td>
-        <td>542 | 123</td>
-        <td><span class="text-success">Upcoming</span></td>
-        <td>
-          <div class="dropdown">
-            <button class="btn p-0" type="button" data-bs-toggle="dropdown">
-              <i class="bi bi-three-dots-vertical"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#eventSidebar">View Event</a></li>
-            <li>
-        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#promoteEventModal">
-            Promote on App
-        </button>
-        </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Afrobeats Night</td>
-        <td>12345</td>
-        <td>AfroVibe Ent.</td>
-        <td>July 28</td>
-        <td>Atlanta, GA</td>
-        <td>233 | 220</td>
-        <td><span class="text-success">Upcoming</span></td>
-        <td>
-          <div class="dropdown">
-            <button class="btn p-0" type="button" data-bs-toggle="dropdown">
-              <i class="bi bi-three-dots-vertical"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#eventSidebar">View Event</a></li>
-        <li>
-        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#promoteEventModal">
-            Promote on App
-        </button>
-        </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Church Picnic</td>
-        <td>12345</td>
-        <td>RCCG USA</td>
-        <td>August 12</td>
-        <td>Houston, TX</td>
-        <td>109 | 36</td>
-        <td><span class="text-warning">Ongoing</span></td>
-        <td>
-          <div class="dropdown">
-            <button class="btn p-0" type="button" data-bs-toggle="dropdown">
-              <i class="bi bi-three-dots-vertical"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#eventSidebar">View Event</a></li>
-            <li>
-        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#promoteEventModal">
-            Promote on App
-        </button>
-        </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Diaspora Expo</td>
-        <td>12345</td>
-        <td>Deespora Team</td>
-        <td>July 15</td>
-        <td>LA, CA</td>
-        <td>801 | 567</td>
-        <td><span class="text-danger">Past</span></td>
-        <td>
-          <div class="dropdown">
-            <button class="btn p-0" type="button" data-bs-toggle="dropdown">
-              <i class="bi bi-three-dots-vertical"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#eventSidebar">View Event</a></li>
-               <li>
-            <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#promoteEventModal">
-                Promote on App
-            </button>
-        </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
+      <!-- Dynamic content will be loaded here -->
     </tbody>
   </table>
 </div>
@@ -351,6 +310,79 @@
       <div class="modal-footer border-0 d-flex justify-content-center gap-3">
         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-listing">Promote Event</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- View Event Details Modal -->
+<div class="modal fade" id="viewEventModal" tabindex="-1" aria-labelledby="viewEventLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewEventLabel">Event Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Event Image -->
+        <div id="eventImageContainer" class="mb-3 d-none">
+          <img id="eventImage" src="" alt="Event" class="img-fluid rounded" style="max-height: 300px; width: 100%; object-fit: cover;">
+        </div>
+        
+        <!-- Event Name -->
+        <h4 id="modalEventName" class="mb-3">Loading...</h4>
+        
+        <!-- Event Details Grid -->
+        <div class="row g-3">
+          <div class="col-md-6">
+            <p class="mb-2"><strong><i class="bi bi-fingerprint me-2"></i>Event ID:</strong><br>
+            <span id="modalEventId" class="text-muted">-</span></p>
+          </div>
+          <div class="col-md-6">
+            <p class="mb-2"><strong><i class="bi bi-tag me-2"></i>Status:</strong><br>
+            <span id="modalEventStatus" class="badge bg-success">-</span></p>
+          </div>
+          <div class="col-md-6">
+            <p class="mb-2"><strong><i class="bi bi-calendar-event me-2"></i>Date & Time:</strong><br>
+            <span id="modalEventDate" class="text-muted">-</span></p>
+          </div>
+          <div class="col-md-6">
+            <p class="mb-2"><strong><i class="bi bi-clock me-2"></i>Timezone:</strong><br>
+            <span id="modalEventTimezone" class="text-muted">-</span></p>
+          </div>
+          <div class="col-md-12">
+            <p class="mb-2"><strong><i class="bi bi-geo-alt me-2"></i>Location:</strong><br>
+            <span id="modalEventLocation" class="text-muted">-</span></p>
+          </div>
+          <div class="col-md-6">
+            <p class="mb-2"><strong><i class="bi bi-cash me-2"></i>Price Range:</strong><br>
+            <span id="modalEventPrice" class="text-muted">-</span></p>
+          </div>
+          <div class="col-md-6">
+            <p class="mb-2"><strong><i class="bi bi-link-45deg me-2"></i>Event URL:</strong><br>
+            <a id="modalEventUrl" href="#" target="_blank" class="text-decoration-none">View Event Page</a></p>
+          </div>
+          <div class="col-md-12" id="modalEventClassifications" class="d-none">
+            <p class="mb-2"><strong><i class="bi bi-tags me-2"></i>Categories:</strong><br>
+            <span id="modalEventCategories" class="text-muted">-</span></p>
+          </div>
+        </div>
+        
+        <!-- Full JSON Data (Collapsible) -->
+        <div class="mt-4">
+          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#fullEventData">
+            <i class="bi bi-code-square me-1"></i> View Full Event Data
+          </button>
+          <div class="collapse mt-2" id="fullEventData">
+            <pre id="modalEventJson" class="bg-light p-3 rounded" style="max-height: 300px; overflow-y: auto; font-size: 0.85rem;"></pre>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a id="modalFullDetailsLink" href="#" class="btn btn-primary">
+          <i class="bi bi-eye me-1"></i> View Full Details Page
+        </a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -468,11 +500,15 @@
 
 
 <!-- Scripts -->
+<script src="config.js"></script>
+<script>checkAuth();</script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="api.js"></script>
 <script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
 
 
 </body>

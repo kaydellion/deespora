@@ -1,0 +1,19 @@
+# Ignore environment variables
+.env
+.env.local
+
+# Ignore node_modules if using any npm packages
+node_modules/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore Netlify build output
+.netlify/
