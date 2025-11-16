@@ -33,13 +33,13 @@ exports.handler = async (event, context) => {
         const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
         const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
-        // Debug logging (remove after testing)
+        /* Debug logging (remove after testing)
         console.log('Login attempt:', { email, hasPassword: !!password });
         console.log('Environment check:', { 
             hasAdminEmail: !!ADMIN_EMAIL, 
             hasAdminPassword: !!ADMIN_PASSWORD,
             adminEmailValue: ADMIN_EMAIL // Only for debugging
-        });
+        });*/
 
         // Validate credentials
         if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
