@@ -86,35 +86,87 @@ function createUserRow(user, index) {
 }
 
 // View user details
-function viewUser(userId) {
-    const user = allUsers.find(u => (u._id || u.id) == userId);
-    
-    if (user) {
+async function viewUser(userId) {
+    try {
+        // Fetch detailed user information from backend
+        const response = await fetch(`${API_CONFIG.baseURL}/get-user/?id=${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            mode: 'cors'
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        const user = result.data || result;
+
+        // Display in modal
+        const modalBody = document.getElementById('userDetailsBody');
         const name = `${user.firstName || ''} ${user.lastName || ''}`.trim() || 'N/A';
-        const details = `
-Name: ${name}
-Email: ${user.email || 'N/A'}
-Phone: ${user.phoneNumber || user.phone || 'N/A'}
-Status: ${user.status || (user.isActive ? 'Active' : 'Active')}
-Joined: ${formatUserDate(user.createdAt)}
+        
+        modalBody.innerHTML = `
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Personal Information</h6>
+                    <p><strong>ID:</strong> ${user._id || user.id || 'N/A'}</p>
+                    <p><strong>First Name:</strong> ${user.firstName || 'N/A'}</p>
+                    <p><strong>Last Name:</strong> ${user.lastName || 'N/A'}</p>
+                    <p><strong>Email:</strong> ${user.email || 'N/A'}</p>
+                    <p><strong>Phone:</strong> ${user.phoneNumber || user.phone || 'N/A'}</p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Account Status</h6>
+                    <p><strong>Status:</strong> ${user.status || (user.isActive ? 'Active' : 'Active')}</p>
+                    <p><strong>Email Verified:</strong> ${user.phoneVerified ? 'Yes' : 'No'}</p>
+                    <p><strong>Role:</strong> ${user.role || 'User'}</p>
+                    <p><strong>Created:</strong> ${formatUserDate(user.createdAt)}</p>
+                </div>
+            </div>
         `;
-        alert(details);
-        console.log('User details:', user);
+
+        const modal = new bootstrap.Modal(document.getElementById('viewUserModal'));
+        modal.show();
+
+    } catch (error) {
+        console.error('Error loading user details:', error);
+        alert('Failed to load user details');
     }
 }
 
 // Toggle user status (suspend/activate)
-function toggleUserStatus(userId, currentStatus) {
-    const newStatus = currentStatus === 'Active' ? 'Suspended' : 'Active';
-    const confirmed = confirm(`Are you sure you want to ${newStatus === 'Suspended' ? 'suspend' : 'activate'} this user?`);
+async function toggleUserStatus(userId, currentStatus) {
+    const action = currentStatus === 'Active' ? 'suspend' : 'activate';
+    const endpoint = action === 'suspend' ? 'deactivate' : 'activate';
     
-    if (confirmed) {
-        // TODO: Add API call to update user status
-        alert(`User ${newStatus.toLowerCase()} (API call needed)`);
-        console.log(`Update user ${userId} to ${newStatus}`);
-        
-        // Reload users after update
-        // loadUsers();
+    const confirmed = confirm(`Are you sure you want to ${action} this user?`);
+    
+    if (!confirmed) return;
+    
+    try {
+        const response = await fetch(`${API_CONFIG.baseURL}/${endpoint}/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            mode: 'cors'
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            alert(`User ${action}d successfully`);
+            loadUsers(); // Reload data
+        } else {
+            alert(result.message || `Failed to ${action} user`);
+        }
+
+    } catch (error) {
+        console.error(`Error ${action}ing user:`, error);
+        alert(`Failed to ${action} user`);
     }
 }
 

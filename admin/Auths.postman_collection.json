@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\":\"mac\",\n    \"lastName\":\"kingsley\",\n    \"email\":\"macsonline500@gmail.com\",\n    \"phoneNumber\":\"08111111111\",\n    \"password\":\"00000\"\n}",
+					"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"mypassword123\",\n  \"phoneNumber\": \"08123456789\",\n  \"role\": \"user\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -22,14 +22,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/auth/register",
+					"raw": "http://localhost:3000/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"auth",
 						"register"
 					]
 				}
@@ -204,7 +203,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"macsonline500@gmail.com\",\n    \"password\":\"0000\"\n}",
+					"raw": "{\n    \"email\":\"macsonline500@gmail.com\",\n    \"password\":\"Kk76117018@\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -212,14 +211,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/auth/login",
+					"raw": "http://localhost:3000/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"auth",
 						"login"
 					]
 				}
@@ -998,6 +996,52 @@
 					"body": "{\n    \"success\": false,\n    \"message\": \"User not found\"\n}"
 				}
 			]
+		},
+		{
+			"name": "Deactivate Account",
+			"request": {
+				"auth": {
+					"type": "inherit"
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/deactivate/691edb7e5d5c23c9d5671a81",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"deactivate",
+						"691edb7e5d5c23c9d5671a81"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate Account",
+			"request": {
+				"auth": {
+					"type": "inherit"
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/activate/691edb7e5d5c23c9d5671a81",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activate",
+						"691edb7e5d5c23c9d5671a81"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "46a6ae65-cb41-4c1e-809d-a51ea4436584",
+		"name": "Listings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27409495",
+		"_collection_link": "https://www.postman.com/dark-shadow-333419/deesporainfra/collection/bhc23rh/listings?action=share&source=collection_link&creator=27409495"
+	},
+	"item": [
+		{
+			"name": "Create Listings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Naija Festival",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "4 Days Hot festival",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "691e4c036edc4dee1d2e25b6",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Lagos",
+							"type": "text"
+						},
+						{
+							"key": "websiteUrl",
+							"value": "https://naija-kitchen.com",
+							"type": "text"
+						},
+						{
+							"key": "eventDate",
+							"value": "2024-12-25T10:00:00Z",
+							"type": "text"
+						},
+						{
+							"key": "images",
+							"type": "file",
+							"src": "/Users/mac/Pictures/1761169872678.png"
+						},
+						{
+							"key": "promoteOnHomepage",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "highlightInNewsletter",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "addTrendingBadge",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "promotionDuration",
+							"value": "3 Days",
+							"type": "text"
+						},
+						{
+							"key": "promotionStartDate",
+							"value": "2024-12-25T10:00:00Z",
+							"type": "text"
+						},
+						{
+							"key": "userId",
+							"value": "68d127c23286dbbb7e26bef0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/listings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listings"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Naija Night",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "4 Days Hot festival",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Musica",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Lagos",
+									"type": "text"
+								},
+								{
+									"key": "websiteUrl",
+									"value": "https://naija-kitchen.com",
+									"type": "text"
+								},
+								{
+									"key": "eventDate",
+									"value": "2024-12-25T10:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/Users/mac/Pictures/1761169872678.png"
+								},
+								{
+									"key": "promoteOnHomepage",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "highlightInNewsletter",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "addTrendingBadge",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "promotionDuration",
+									"value": "3 Days",
+									"type": "text"
+								},
+								{
+									"key": "promotionStartDate",
+									"value": "2024-12-25T10:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "68d127c23286dbbb7e26bef0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/listings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express",
+							"type": "text"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"type": "text"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "615",
+							"type": "text"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"267-xHge83/rXzK8Hf5zBbe4cSVTaV0\"",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Nov 2025 08:11:37 GMT",
+							"type": "text"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"type": "text"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"Listing created successfully\",\n    \"data\": {\n        \"listing\": {\n            \"id\": \"691ecd39b6f4aeb00efc0b21\",\n            \"title\": \"Naija Night\",\n            \"description\": \"4 Days Hot festival\",\n            \"category\": {\n                \"id\": \"691e4c036edc4dee1d2e25b6\",\n                \"name\": \"Musica\",\n                \"slug\": \"musica\",\n                \"icon\": \"https://ik.imagekit.io/Deespora/categories/category-Musica-1763593216046_x2__sRNfp\"\n            },\n            \"location\": \"Lagos\",\n            \"contactPhone\": \"\",\n            \"websiteUrl\": \"https://naija-kitchen.com\",\n            \"eventDate\": \"2024-12-25T10:00:00.000Z\",\n            \"images\": [\n                \"https://ik.imagekit.io/Deespora/listings/Naija-Night-1763626294798-0_OyCxMQIT8\"\n            ],\n            \"promoted\": true,\n            \"status\": true,\n            \"createdAt\": \"2025-11-20T08:11:37.135Z\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Listings",
+			"request": {
+				"auth": {
+					"type": "inherit"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/listings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Listing",
+			"request": {
+				"auth": {
+					"type": "inherit"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/listings/691e55677938f9bc08a856fb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listings",
+						"691e55677938f9bc08a856fb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Listings",
+			"request": {
+				"auth": {
+					"type": "inherit"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Updated Naija Night\",\n  \"description\": \"Extended offer - 5 Days special\",\n  \"location\": \"Abuja, Nigeria\",\n  \"contactPhone\": \"+2348098765432\",\n  \"status\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/listings/691ecd39b6f4aeb00efc0b21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listings",
+						"691ecd39b6f4aeb00efc0b21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Listings",
+			"request": {
+				"auth": {
+					"type": "inherit"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/listings/691e55677938f9bc08a856fb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listings",
+						"691e55677938f9bc08a856fb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Promote Listing",
+			"request": {
+				"auth": {
+					"type": "inherit"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"promoteOnHomepage\": true,\n  \"highlightInNewsletter\": true,\n  \"addTrendingBadge\": true,\n  \"promotionDuration\": \"7 Days\",\n  \"promotionStartDate\": \"2024-11-20T00:00:00Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/listings/691ed13cf726d9b77164a863/promote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listings",
+						"691ed13cf726d9b77164a863",
+						"promote"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

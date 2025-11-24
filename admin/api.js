@@ -1,7 +1,40 @@
 // Simple API Handler
 const API = {
-    // Login Admin - now uses Netlify Function
+    // Login Admin - uses backend /auth/login endpoint
     login: async function(email, password) {
+        try {
+            const response = await fetch(`${API_CONFIG.baseURL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                mode: 'cors',
+                body: JSON.stringify({ email, password })
+            });
+
+            const result = await response.json();
+
+            if (result.success && result.message && result.message.token) {
+                const token = result.message.token;
+                const user = result.message.user;
+                
+                localStorage.setItem('adminToken', token);
+                localStorage.setItem('adminEmail', user.email);
+                localStorage.setItem('adminUser', JSON.stringify(user));
+                
+                return { success: true, token: token, user: user };
+            } else {
+                throw new Error(result.message || 'Invalid email or password');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            throw new Error(error.message || 'Login failed. Please try again.');
+        }
+    },
+
+    // OLD Login method (kept for reference/fallback)
+    // Uses Netlify Function with hardcoded credentials
+    loginLegacy: async function(email, password) {
         try {
             const response = await fetch(API_CONFIG.loginURL, {
                 method: 'POST',
@@ -23,6 +56,31 @@ const API = {
         } catch (error) {
             console.error('Login error:', error);
             throw new Error(error.message || 'Login failed. Please try again.');
+        }
+    },
+
+    // Register new admin user
+    register: async function(userData) {
+        try {
+            const response = await fetch(`${API_CONFIG.baseURL}/auth/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                mode: 'cors',
+                body: JSON.stringify(userData)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                return { success: true, data: result.data, message: result.message };
+            } else {
+                throw new Error(result.message || 'Registration failed');
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            throw new Error(error.message || 'Registration failed. Please try again.');
         }
     },
 

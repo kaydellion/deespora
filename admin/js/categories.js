@@ -111,10 +111,10 @@ function createCategoryRow(category, index) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="listing.html?category=${category.slug}">View Listings (${listingsCount})</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="editCategory('${categoryId}')">Edit</a></li>
+                        <!-- <li><a class="dropdown-item" href="#" onclick="editCategory('${categoryId}')">Edit</a></li>
                         <li><a class="dropdown-item" href="#" onclick="toggleCategoryStatus('${categoryId}', '${status}')">
                             ${status === 'Active' ? 'Deactivate' : 'Activate'}
-                        </a></li>
+                        </a></li> -->
                     </ul>
                 </div>
             </td>
