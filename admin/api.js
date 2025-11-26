@@ -1,9 +1,9 @@
 // Simple API Handler
 const API = {
-    // Login Admin - uses backend /auth/login endpoint
+    // Login Admin - uses backend /login endpoint
     login: async function(email, password) {
         try {
-            const response = await fetch(`${API_CONFIG.baseURL}/auth/login`, {
+            const response = await fetch(`${API_CONFIG.baseURL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
