@@ -13,10 +13,12 @@ const API = {
             });
 
             const result = await response.json();
+            console.log('Login response:', result);
 
-            if (result.success && result.message && result.message.token) {
-                const token = result.message.token;
-                const user = result.message.user;
+            // Check for success and extract token from data object
+            if (result.success && result.data && result.data.token) {
+                const token = result.data.token;
+                const user = result.data.user;
                 
                 localStorage.setItem('adminToken', token);
                 localStorage.setItem('adminEmail', user.email);
