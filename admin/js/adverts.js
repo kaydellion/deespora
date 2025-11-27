@@ -30,8 +30,21 @@ async function loadAdverts() {
         const result = await response.json();
         console.log('Adverts response:', result);
 
-        // Extract data array
-        allAdverts = result.data || result || [];
+        // Extract data array - handle different response formats
+        let advertsData = [];
+        
+        if (result.data && Array.isArray(result.data.listings)) {
+            advertsData = result.data.listings;
+        } else if (result.data && Array.isArray(result.data)) {
+            advertsData = result.data;
+        } else if (Array.isArray(result)) {
+            advertsData = result;
+        } else if (result.listings && Array.isArray(result.listings)) {
+            advertsData = result.listings;
+        }
+        
+        allAdverts = advertsData;
+        console.log('Extracted adverts:', allAdverts);
         
         displayAdverts(allAdverts);
         
