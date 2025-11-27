@@ -7,8 +7,8 @@ const API_CONFIG = {
 // Check if user is logged in
 function checkAuth() {
     const token = localStorage.getItem('adminToken');
-    if (!token && !window.location.pathname.includes('login.html')) {
-        window.location.href = 'login.html';
+    if (!token && !window.location.pathname.includes('index.html')) {
+        window.location.href = 'index.html';
     }
 }
 
@@ -16,5 +16,5 @@ function checkAuth() {
 function logout() {
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminEmail');
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
