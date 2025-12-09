@@ -16,6 +16,8 @@ $(document).ready(function() {
 // Load all adverts from backend
 async function loadAdverts() {
     try {
+        console.log('Loading adverts...');
+        
         const response = await fetch(`${API_CONFIG.baseURL}/listings`, {
             method: 'GET',
             headers: {
@@ -45,19 +47,26 @@ async function loadAdverts() {
         }
         
         allAdverts = advertsData;
-        console.log('Extracted adverts:', allAdverts);
+        console.log('Loaded adverts count:', allAdverts.length);
         
         displayAdverts(allAdverts);
         
     } catch (error) {
         console.error('Error loading adverts:', error);
-        alert('Failed to load adverts. Please check the console.');
+        alert('Failed to load adverts: ' + error.message);
     }
 }
 
 // Display adverts in table
 function displayAdverts(adverts) {
     const tbody = $('#advertsTable tbody');
+    
+    // Destroy existing DataTable if it exists
+    if (advertsTable) {
+        advertsTable.destroy();
+        advertsTable = null;
+    }
+    
     tbody.empty();
 
     if (!adverts || adverts.length === 0) {
@@ -70,18 +79,15 @@ function displayAdverts(adverts) {
         tbody.append(row);
     });
 
-    // Initialize DataTable
-    if (advertsTable) {
-        advertsTable.destroy();
-    }
-    
+    // Initialize DataTable with new data
     advertsTable = $('#advertsTable').DataTable({
         pageLength: 20,
         order: [[6, 'desc']], // Sort by created date
         language: {
             search: "",
             searchPlaceholder: "Search adverts..."
-        }
+        },
+        destroy: true // Allow reinitialization
     });
 }
 
@@ -96,6 +102,9 @@ function createAdvertRow(advert) {
     const promotedBadge = advert.promoted ? 
         '<span class="badge bg-warning">Yes</span>' : 
         '<span class="badge bg-secondary">No</span>';
+    
+    // Use _id or id, whichever is available
+    const advertId = advert._id || advert.id;
 
     return `
         <tr>
@@ -108,13 +117,13 @@ function createAdvertRow(advert) {
             <td>${createdDate}</td>
             <td>
                 <div class="btn-group btn-group-sm">
-                    <button class="btn btn-outline-primary btn-sm" onclick="viewAdvert('${advert.id}')" title="View">
+                    <button class="btn btn-outline-primary btn-sm" onclick="viewAdvert('${advertId}')" title="View">
                         <i class="bi bi-eye"></i>
                     </button>
-                    <button class="btn btn-outline-warning btn-sm" onclick="openPromoteModal('${advert.id}')" title="Promote">
+                    <button class="btn btn-outline-warning btn-sm" onclick="openPromoteModal('${advertId}')" title="Promote">
                         <i class="bi bi-star"></i>
                     </button>
-                    <button class="btn btn-outline-danger btn-sm" onclick="deleteAdvert('${advert.id}')" title="Delete">
+                    <button class="btn btn-outline-danger btn-sm" onclick="deleteAdvert('${advertId}')" title="Delete">
                         <i class="bi bi-trash"></i>
                     </button>
                 </div>
@@ -126,6 +135,8 @@ function createAdvertRow(advert) {
 // View advert details
 async function viewAdvert(advertId) {
     try {
+        console.log('Viewing advert:', advertId);
+        
         const response = await fetch(`${API_CONFIG.baseURL}/listings/${advertId}`, {
             method: 'GET',
             headers: {
@@ -139,7 +150,25 @@ async function viewAdvert(advertId) {
         }
 
         const result = await response.json();
-        const advert = result.data || result;
+        console.log('View advert response:', result);
+        
+        // Extract advert data - handle multiple response structures
+        let advert = null;
+        if (result.data && result.data.listing) {
+            advert = result.data.listing;
+        } else if (result.data) {
+            advert = result.data;
+        } else if (result.listing) {
+            advert = result.listing;
+        } else {
+            advert = result;
+        }
+        
+        console.log('Extracted advert:', advert);
+
+        if (!advert || !advert.title) {
+            throw new Error('Invalid advert data received');
+        }
 
         // Display in modal
         const modalBody = document.getElementById('advertDetailsBody');
@@ -148,9 +177,9 @@ async function viewAdvert(advertId) {
                 <div class="col-md-6">
                     <h6>Basic Information</h6>
                     <p><strong>Title:</strong> ${advert.title || 'N/A'}</p>
-                    <p><strong>Category:</strong> ${advert.category?.name || 'N/A'}</p>
+                    <p><strong>Category:</strong> ${advert.category?.name || advert.category || 'N/A'}</p>
                     <p><strong>Location:</strong> ${advert.location || 'N/A'}</p>
-                    <p><strong>Contact Phone:</strong> ${advert.contactPhone || 'N/A'}</p>
+                    <p><strong>Contact Phone:</strong> ${advert.phoneNumber || advert.contactPhone || 'N/A'}</p>
                     <p><strong>Website:</strong> ${advert.websiteUrl ? `<a href="${advert.websiteUrl}" target="_blank">${advert.websiteUrl}</a>` : 'N/A'}</p>
                 </div>
                 <div class="col-md-6">
@@ -180,7 +209,7 @@ async function viewAdvert(advertId) {
 
     } catch (error) {
         console.error('Error loading advert details:', error);
-        alert('Failed to load advert details');
+        alert('Failed to load advert details: ' + error.message);
     }
 }
 
@@ -245,6 +274,8 @@ async function deleteAdvert(advertId) {
     }
 
     try {
+        console.log('Deleting advert:', advertId);
+        
         const response = await fetch(`${API_CONFIG.baseURL}/listings/${advertId}`, {
             method: 'DELETE',
             headers: {
@@ -253,18 +284,24 @@ async function deleteAdvert(advertId) {
             mode: 'cors'
         });
 
-        const result = await response.json();
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        }
 
-        if (response.ok && result.success) {
+        const result = await response.json();
+        console.log('Delete response:', result);
+
+        if (result.success || result.message || response.ok) {
             alert('Advert deleted successfully');
-            loadAdverts(); // Reload data
+            await loadAdverts(); // Reload data
         } else {
-            alert(result.message || 'Failed to delete advert');
+            throw new Error(result.message || 'Failed to delete advert');
         }
 
     } catch (error) {
         console.error('Error deleting advert:', error);
-        alert('Failed to delete advert');
+        alert('Failed to delete advert: ' + error.message);
     }
 }
 
@@ -349,25 +386,29 @@ async function submitAdvert() {
 
     try {
         // Show loading state
-        const submitBtn = event.target;
+        const submitBtn = document.querySelector('#addAdvertModal .btn-listing');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Creating...';
         submitBtn.disabled = true;
 
+        console.log('Creating advert...');
         const result = await API.createListing(formData);
+        console.log('Create advert result:', result);
 
         if (result.success || result.data) {
             alert('Advert created successfully!');
             
             // Close modal
             const modal = bootstrap.Modal.getInstance(document.getElementById('addAdvertModal'));
-            modal.hide();
+            if (modal) {
+                modal.hide();
+            }
             
             // Reset form
             form.reset();
             
             // Reload adverts
-            loadAdverts();
+            await loadAdverts();
         } else {
             throw new Error(result.message || 'Failed to create advert');
         }
