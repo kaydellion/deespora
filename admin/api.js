@@ -64,7 +64,7 @@ const API = {
     // Register new admin user
     register: async function(userData) {
         try {
-            const response = await fetch(`${API_CONFIG.baseURL}/auth/register`, {
+            const response = await fetch(`${API_CONFIG.baseURL}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
