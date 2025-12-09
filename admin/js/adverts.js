@@ -5,6 +5,7 @@ let allAdverts = [];
 // Initialize page
 $(document).ready(function() {
     loadAdverts();
+    loadCategories(); // Load categories for the dropdown
     
     // Search functionality
     $('#searchInput').on('keyup', function() {
@@ -264,5 +265,122 @@ async function deleteAdvert(advertId) {
     } catch (error) {
         console.error('Error deleting advert:', error);
         alert('Failed to delete advert');
+    }
+}
+
+// Load categories for dropdown
+async function loadCategories() {
+    try {
+        const categories = await API.getCategories();
+        const categorySelect = document.getElementById('advertCategory');
+        
+        if (!categorySelect) return;
+        
+        // Clear existing options except the first one
+        categorySelect.innerHTML = '<option value="" selected disabled>Select Category</option>';
+        
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.id || category._id;
+            option.textContent = category.name;
+            categorySelect.appendChild(option);
+        });
+        
+    } catch (error) {
+        console.error('Error loading categories:', error);
+    }
+}
+
+// Submit new advert
+async function submitAdvert() {
+    const form = document.getElementById('addAdvertForm');
+    
+    // Validate form
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    // Get current user from localStorage
+    const adminUser = JSON.parse(localStorage.getItem('adminUser') || '{}');
+    const userId = adminUser.id || adminUser._id;
+    
+    if (!userId) {
+        alert('User not found. Please log in again.');
+        return;
+    }
+
+    // Create FormData object
+    const formData = new FormData();
+    
+    // Add text fields
+    formData.append('title', document.getElementById('advertTitle').value);
+    formData.append('description', document.getElementById('advertDescription').value);
+    formData.append('category', document.getElementById('advertCategory').value);
+    formData.append('location', document.getElementById('advertLocation').value);
+    formData.append('userId', userId);
+    
+    // Add optional fields
+    const phone = document.getElementById('advertPhone').value;
+    if (phone) formData.append('phoneNumber', phone);
+    
+    const website = document.getElementById('advertWebsite').value;
+    if (website) formData.append('websiteUrl', website);
+    
+    const eventDate = document.getElementById('advertEventDate').value;
+    if (eventDate) formData.append('eventDate', new Date(eventDate).toISOString());
+    
+    // Add promotion fields
+    formData.append('promoteOnHomepage', document.getElementById('advertPromoteHomepage').checked);
+    formData.append('highlightInNewsletter', document.getElementById('advertHighlightNewsletter').checked);
+    formData.append('addTrendingBadge', document.getElementById('advertTrendingBadge').checked);
+    
+    const promotionDuration = document.getElementById('advertPromotionDuration').value;
+    if (promotionDuration) formData.append('promotionDuration', promotionDuration);
+    
+    const promotionStartDate = document.getElementById('advertPromotionStartDate').value;
+    if (promotionStartDate) formData.append('promotionStartDate', new Date(promotionStartDate).toISOString());
+    
+    // Add images
+    const imageFiles = document.getElementById('advertImages').files;
+    for (let i = 0; i < imageFiles.length; i++) {
+        formData.append('images', imageFiles[i]);
+    }
+
+    try {
+        // Show loading state
+        const submitBtn = event.target;
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Creating...';
+        submitBtn.disabled = true;
+
+        const result = await API.createListing(formData);
+
+        if (result.success || result.data) {
+            alert('Advert created successfully!');
+            
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addAdvertModal'));
+            modal.hide();
+            
+            // Reset form
+            form.reset();
+            
+            // Reload adverts
+            loadAdverts();
+        } else {
+            throw new Error(result.message || 'Failed to create advert');
+        }
+
+    } catch (error) {
+        console.error('Error creating advert:', error);
+        alert(error.message || 'Failed to create advert. Please try again.');
+    } finally {
+        // Reset button state
+        const submitBtn = document.querySelector('#addAdvertModal .btn-listing');
+        if (submitBtn) {
+            submitBtn.innerHTML = 'Create Advert';
+            submitBtn.disabled = false;
+        }
     }
 }

@@ -234,5 +234,65 @@ const API = {
     // Get Real Estate
     getRealEstate: async function() {
         return this.getListings('real-estate');
+    },
+
+    // Create Listing/Advert
+    createListing: async function(formData) {
+        try {
+            const token = localStorage.getItem('adminToken');
+            
+            const response = await fetch(`${API_CONFIG.baseURL}/listings`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                mode: 'cors',
+                body: formData // FormData will set Content-Type automatically with boundary
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error('Error creating listing:', error);
+            throw error;
+        }
+    },
+
+    // Get Categories
+    getCategories: async function() {
+        try {
+            const response = await fetch(`${API_CONFIG.baseURL}/categories`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                mode: 'cors'
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            // Handle different response structures
+            if (result.data && result.data.categories) {
+                return result.data.categories;
+            } else if (result.data && Array.isArray(result.data)) {
+                return result.data;
+            } else if (Array.isArray(result)) {
+                return result;
+            }
+            
+            return [];
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+            return [];
+        }
     }
 };
