@@ -206,7 +206,7 @@
             margin-top: 0.5rem;
         }
         .icon-box-desc {
-            font-size:13px !important;
+            font-size:14px !important;
             font-weight: 400;
             color: var(--black);
             text-align: left;
@@ -663,7 +663,7 @@
             }
             
             .icon-box-desc {
-                font-size: 12px !important;
+                font-size: 14px !important;
             }
 
             /* Benefits Section */
