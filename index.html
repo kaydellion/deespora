@@ -65,7 +65,7 @@
 
                 <!-- Subscribe form
                 <form id="subscribeForm" class="mt-4 d-flex" style="max-width:520px;">
-                    <input type="email" id="subscribeEmail" class="form-control me-2" placeholder="Enter your email to subscribe" required>
+                    <input type="email" id="subscribeEmail" name="email" class="form-control me-2" placeholder="Enter your email to subscribe" required>
                     <button type="submit" class="btn bg-primary-custom text-white">Subscribe</button>
                 </form>-->
 			</div>
@@ -319,24 +319,24 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="subject" class="form-label">Subject</label>
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                                 </div>
                                 <div class="mb-3">
                                     <label for="business" class="form-label">Business Name</label>
-                                    <input type="text" class="form-control" id="business" placeholder="Business Name">
+                                    <input type="text" class="form-control" id="business" name="business" placeholder="Business Name">
                                 </div>
                                 <div class="mb-4">
                                     <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" rows="5" placeholder="Tell us about your request"></textarea>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell us about your request" required></textarea>
                                 </div>
                                 <button type="submit" class="btn bg-primary-custom px-4 py-2 text-white">
                                     Send Message <i class="fas fa-arrow-right ms-2"></i>
