@@ -52,8 +52,8 @@ All emails are sent to: **hello@deespora.com**
 
 ### 4) Test the Forms
 
-- **Subscribe form**: Posts to `/deespora/backend/subscribe.php`
-- **Contact form**: Posts to `/deespora/backend/contact.php`
+- **Subscribe form**: Posts to `/backend/subscribe.php`
+- **Contact form**: Posts to `/backend/contact.php`
 
 Both endpoints:
 - Return JSON responses: `{success: true}` or `{success: false, error: "..."}`
@@ -83,5 +83,5 @@ Both templates feature:
   - Check MySQL user permissions
 - **404 errors**: 
   - Ensure XAMPP is running
-  - Verify URLs match your setup (adjust `/deespora/` path if needed)
+  - Verify URLs match your setup (adjust `/` path if needed)
   - Check file permissions

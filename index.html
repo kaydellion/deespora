@@ -416,7 +416,7 @@
                     try {
                         const form = new FormData();
                         form.append('email', email);
-                        const res = await fetch('/deespora/backend/subscribe.php', { method: 'POST', body: form });
+                        const res = await fetch('/backend/subscribe.php', { method: 'POST', body: form });
                         const json = await res.json();
                         if (json.success) {
                             alert('Thanks for subscribing!');
@@ -438,7 +438,7 @@
                     e.preventDefault();
                     const fd = new FormData(contactForm);
                     try {
-                        const res = await fetch('/deespora/backend/contact.php', { method: 'POST', body: fd });
+                        const res = await fetch('/backend/contact.php', { method: 'POST', body: fd });
                         const json = await res.json();
                         if (json.success) {
                             alert('Message sent! We will get back to you shortly.');
