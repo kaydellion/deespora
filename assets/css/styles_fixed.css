@@ -189,7 +189,7 @@ body {
     margin-top: 0.5rem;
 }
 .icon-box-desc {
-    font-size:14px;
+    font-size:13px !important;
     font-weight: 400;
     color: var(--black);
     text-align: left;
@@ -627,7 +627,7 @@ body {
     }
     
     .icon-box-desc {
-        font-size: 13px;
+        font-size: 12px !important;
     }
 
     /* Benefits Section */
