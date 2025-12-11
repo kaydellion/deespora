@@ -21,17 +21,28 @@ try {
 
     // Save to DB
     $dbCfg = $cfg['db'];
-    $dsn = "mysql:host={$dbCfg['host']};dbname={$dbCfg['name']};charset={$dbCfg['charset']}";
-    $pdo = new PDO($dsn, $dbCfg['user'], $dbCfg['pass'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    
+    // ✅ Avoid multiple connections
+    if (!isset($con) || !$con instanceof mysqli || !$con->ping()) {
+        $con = mysqli_connect($dbCfg['host'], $dbCfg['user'], $dbCfg['pass'], $dbCfg['name']);
 
-    $stmt = $pdo->prepare('INSERT INTO contacts (name, email, subject, business, message, created_at) VALUES (:name, :email, :subject, :business, :message, NOW())');
-    $stmt->execute([
-        ':name' => $name,
-        ':email' => $email,
-        ':subject' => $subject,
-        ':business' => $business,
-        ':message' => $message
-    ]);
+        if (!$con) {
+            error_log("❌ DB Connection failed: " . mysqli_connect_error());
+            throw new Exception("Database connection error. Please try again later.");
+        }
+
+        mysqli_set_charset($con, "utf8mb4");
+        mysqli_query($con, "SET time_zone = '+01:00'"); // Africa/Lagos
+    }
+
+    $stmt = mysqli_prepare($con, 'INSERT INTO contacts (name, email, subject, business, message, created_at) VALUES (?, ?, ?, ?, ?, NOW())');
+    mysqli_stmt_bind_param($stmt, 'sssss', $name, $email, $subject, $business, $message);
+    
+    if (!mysqli_stmt_execute($stmt)) {
+        throw new Exception("Failed to save contact: " . mysqli_error($con));
+    }
+    
+    mysqli_stmt_close($stmt);
 
     // Send email to admin using native PHP mail()
     try {
