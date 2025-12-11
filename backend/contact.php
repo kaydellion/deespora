@@ -21,7 +21,7 @@ try {
 
     // Save to DB
     $dbCfg = $cfg['db'];
-    $dsn = "mysql:host={$dbCfg['host']};port={$dbCfg['port']};dbname={$dbCfg['name']};charset={$dbCfg['charset']}";
+    $dsn = "mysql:host={$dbCfg['host']};dbname={$dbCfg['name']};charset={$dbCfg['charset']}";
     $pdo = new PDO($dsn, $dbCfg['user'], $dbCfg['pass'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     $stmt = $pdo->prepare('INSERT INTO contacts (name, email, subject, business, message, created_at) VALUES (:name, :email, :subject, :business, :message, NOW())');
