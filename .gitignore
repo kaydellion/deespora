@@ -2,6 +2,19 @@
 .env
 .env.local
 
+# Ignore backend config with credentials
+backend/config.php
+
+# Ignore composer vendor directory
+vendor/
+composer.lock
+
+# Ignore Postman collections (API testing files)
+admin/*.postman_collection.json
+*.postman_collection.json
+*postman_collection.json
+postman/
+
 # Ignore node_modules if using any npm packages
 node_modules/
 
